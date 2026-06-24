@@ -1,0 +1,154 @@
+.bannerSection {
+  width: 100%;
+  max-width: 620px;
+  margin: 10px auto 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 40;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  height: 85px;
+}
+
+.row2 {
+  margin-top: -15px; /* overlap slightly */
+}
+
+/* Base rope string styling */
+.stringSvg {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flagsContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding-top: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual Flag with wave sway animation */
+.flag {
+  --sag: var(--sag-desktop, 0px);
+  position: relative;
+  width: 46px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: top center;
+  animation: windWave 3.5s ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  filter: drop-shadow(0 4px 8px rgba(119, 136, 115, 0.15));
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+/* Interactive bounce on hover */
+.flag:hover {
+  transform: scale(1.15) rotate(0deg) !important;
+  filter: drop-shadow(0 8px 16px rgba(229, 152, 155, 0.25));
+  z-index: 10;
+}
+
+.flagSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.letter {
+  position: relative;
+  z-index: 2;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: white;
+  margin-top: -10px; /* center vertically in swallowtail shape */
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  user-select: none;
+}
+
+/* Bow ribbons at the ends of the string */
+.bowLeft, .bowRight {
+  position: absolute;
+  top: -2px;
+  width: 28px;
+  height: 28px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.bowLeft {
+  left: 1%;
+  animation: bowSwayL 3s ease-in-out infinite alternate;
+}
+
+.bowRight {
+  right: 1%;
+  animation: bowSwayR 3s ease-in-out infinite alternate-reverse;
+}
+
+/* Keyframes for natural fluid waving wind effect */
+@keyframes windWave {
+  0% {
+    transform: translateY(var(--sag, 0px)) rotate(-6deg) skewX(-2deg);
+  }
+  50% {
+    transform: translateY(calc(var(--sag, 0px) + 1px)) rotate(2deg) skewX(1deg);
+  }
+  100% {
+    transform: translateY(calc(var(--sag, 0px) - 1px)) rotate(6deg) skewX(2deg);
+  }
+}
+
+@keyframes bowSwayL {
+  0% { transform: rotate(-5deg) scale(0.95); }
+  100% { transform: rotate(5deg) scale(1.05); }
+}
+
+@keyframes bowSwayR {
+  0% { transform: rotate(5deg) scale(0.95); }
+  100% { transform: rotate(-5deg) scale(1.05); }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 600px) {
+  .row {
+    height: 60px;
+  }
+  .flag {
+    --sag: var(--sag-mobile, 0px);
+    width: 32px;
+    height: 46px;
+  }
+  .letter {
+    font-size: 14px;
+    margin-top: -6px;
+  }
+  .row2 {
+    margin-top: -10px;
+  }
+  .bowLeft, .bowRight {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -1,0 +1,193 @@
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px;
+  background-color: transparent;
+}
+
+/* Swaying Banner Container */
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: center;
+  z-index: 40;
+}
+
+.banner {
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+  object-fit: contain;
+  transform-origin: top center;
+  animation: sway 4s ease-in-out infinite alternate;
+}
+
+
+
+/* Header Text */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+  z-index: 30;
+}
+
+.title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--rose-dark);
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.subtitle {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: var(--sage-dark);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Fade in sections for step by step progression */
+.sectionTransition {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  z-index: 10;
+}
+
+/* Keyframes */
+@keyframes sway {
+  0% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
+
+
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Intro Splash Screen Overlay */
+.introOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FEC0CD; /* Full Pink Background */
+  z-index: 9999; /* Ensure it is on top of everything */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.introOverlayExiting {
+  transform: translateY(-100%);
+}
+
+.introImage {
+  width: 85%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+.introTapPrompt {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: pulseFlash 1.5s infinite;
+}
+
+/* Local animations for intro splash */
+.animate__animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animate__slow {
+  animation-duration: 2s;
+}
+
+.animate__slideInDown {
+  animation-name: slideInDown;
+}
+
+.animate__slideInUp {
+  animation-name: slideInUp;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseFlash {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 600px) {
+  .title {
+    font-size: 26px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+  .introImage {
+    width: 90%;
+    max-width: 320px;
+  }
+  .introTapPrompt {
+    font-size: 15px;
+  }
+}

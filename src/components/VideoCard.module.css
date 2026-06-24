@@ -1,0 +1,209 @@
+.section {
+  margin: 50px auto;
+  width: 100%;
+  max-width: 720px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.cardContainer {
+  background: white;
+  border-radius: 20px;
+  border: 2px solid var(--rose-light);
+  padding: 24px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cardContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 45px rgba(229, 152, 155, 0.18);
+}
+
+/* Perfect botanical side decorations (climbing floral vines) */
+.flowerLeft, .flowerRight {
+  position: absolute;
+  top: 50%;
+  width: 130px;
+  height: 220px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 15;
+}
+
+.flowerLeft {
+  left: -95px;
+  animation: floatFlowerL 7s ease-in-out infinite alternate;
+}
+
+.flowerRight {
+  right: -95px;
+  animation: floatFlowerR 6.5s ease-in-out infinite alternate;
+}
+
+/* Hanging ornaments from the bottom corners of the card */
+.hangingLeft, .hangingRight {
+  position: absolute;
+  bottom: -60px;
+  width: 40px;
+  height: 80px;
+  pointer-events: none;
+  z-index: 12;
+  transform-origin: top center;
+}
+
+.hangingLeft {
+  left: 20px;
+  animation: swayOrnament 4s ease-in-out infinite alternate;
+}
+
+.hangingRight {
+  right: 20px;
+  animation: swayOrnament 4.5s ease-in-out infinite alternate-reverse;
+}
+
+/* Ambient sparkles around the frame */
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 11;
+  fill: var(--rose-light);
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+.sparkle1 { top: -15px; left: 15%; animation-delay: 0s; width: 14px; height: 14px; }
+.sparkle2 { top: -10px; right: 20%; animation-delay: 0.8s; width: 18px; height: 18px; fill: var(--sage-light); }
+.sparkle3 { bottom: -15px; left: 35%; animation-delay: 1.5s; width: 16px; height: 16px; }
+.sparkle4 { bottom: -20px; right: 30%; animation-delay: 2.2s; width: 12px; height: 12px; }
+
+/* Video wrapper for 16:9 ratio */
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.15), 0 5px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+  background: #000;
+  z-index: 10;
+}
+
+.videoElement {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Floating SVG hearts container */
+.heartsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 20;
+}
+
+.heart {
+  position: absolute;
+  bottom: -25px;
+  fill: var(--rose-light);
+  opacity: 0.8;
+  animation: riseUp 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.heartAlt {
+  fill: var(--rose-dark);
+}
+
+/* Keyframes */
+@keyframes floatFlowerL {
+  0% {
+    transform: translateY(-50%) rotate(-4deg) scale(0.97);
+  }
+  100% {
+    transform: translateY(-52%) rotate(4deg) scale(1.03);
+  }
+}
+
+@keyframes floatFlowerR {
+  0% {
+    transform: translateY(-50%) rotate(4deg) scale(0.97);
+  }
+  100% {
+    transform: translateY(-48%) rotate(-4deg) scale(1.03);
+  }
+}
+
+@keyframes swayOrnament {
+  0% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    transform: scale(0.6);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 4px rgba(229, 152, 155, 0.6));
+  }
+}
+
+@keyframes riseUp {
+  0% {
+    transform: translateY(0) scale(0.4) rotate(0deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(calc(-100% - 100px)) scale(1.4) rotate(var(--rot, 35deg));
+    opacity: 0;
+  }
+}
+
+/* Responsive side elements spacing */
+@media (max-width: 900px) {
+  .flowerLeft {
+    left: -70px;
+    width: 95px;
+  }
+  .flowerRight {
+    right: -70px;
+    width: 95px;
+  }
+}
+
+@media (max-width: 740px) {
+  .flowerLeft {
+    left: -55px;
+    width: 80px;
+  }
+  .flowerRight {
+    right: -55px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .flowerLeft, .flowerRight, .hangingLeft, .hangingRight, .sparkle {
+    display: none; /* Hide frame decorations on mobile to keep layout clean */
+  }
+  .cardContainer {
+    padding: 12px;
+    border-radius: 14px;
+  }
+}

@@ -1,0 +1,278 @@
+.section {
+  width: 100%;
+  max-width: 850px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 24px;
+  color: var(--sage-dark);
+  margin-bottom: 30px;
+}
+
+/* Clothesline Area */
+.clotheslineWrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ropeSvg {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cardsContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 96%;
+  padding-top: 25px;
+  position: relative;
+  z-index: 2;
+  flex-wrap: nowrap;
+}
+
+/* Clothespin (wooden clip) */
+.clothespin {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 22px;
+  background: #d7b594;
+  border-radius: 2px;
+  border: 1px solid #c29d78;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+/* Metal spring on clothespin */
+.clothespin::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #888;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #666;
+}
+
+/* Polaroid Card wrapper with sway animation */
+.polaroidCard {
+  position: relative;
+  width: 130px;
+  height: 165px;
+  background: white;
+  padding: 8px 8px 24px 8px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 18px rgba(119, 136, 115, 0.12);
+  border: 1px solid rgba(0,0,0,0.06);
+  transform-origin: top center;
+  animation: ropeSway 4s ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroidCard:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  z-index: 20;
+}
+
+/* Make GIF card slightly larger/distinctive */
+.gifCard {
+  width: 145px;
+  height: 185px;
+  border: 2px solid var(--rose-light);
+  box-shadow: 0 8px 24px rgba(229, 152, 155, 0.18);
+}
+
+/* Photo viewport inside polaroid */
+.photoArea {
+  width: 100%;
+  height: 110px;
+  overflow: hidden;
+  background: #eee;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 2px;
+}
+
+.gifPhotoArea {
+  height: 125px;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.caption {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 11px;
+  color: var(--sage-dark);
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Modal lightbox overlay */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 51, 43, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background: white;
+  padding: 16px 16px 36px 16px;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  max-width: 320px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: zoomIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modalPhoto {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.modalGif {
+  height: 280px;
+  object-fit: cover;
+}
+
+.modalCaption {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  color: var(--rose-dark);
+  margin-top: 14px;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.modalText {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.closeBtn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--rose-light);
+  color: white;
+  border: none;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.closeBtn:hover {
+  transform: scale(1.1);
+  background: var(--rose-dark);
+}
+
+/* Keyframes */
+@keyframes ropeSway {
+  0% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile layouts spacing */
+@media (max-width: 680px) {
+  .polaroidCard {
+    width: 62px;
+    height: 90px;
+    padding: 3px 3px 10px 3px;
+  }
+  .gifCard {
+    width: 72px;
+    height: 105px;
+  }
+  .photoArea {
+    height: 55px;
+  }
+  .gifPhotoArea {
+    height: 70px;
+  }
+  .clothespin {
+    width: 6px;
+    height: 14px;
+    top: -8px;
+  }
+  .clothespin::after {
+    top: 5px;
+    height: 2px;
+  }
+  .caption {
+    font-size: 7px;
+    margin-top: 3px;
+  }
+  .clotheslineWrapper {
+    height: 170px;
+  }
+}

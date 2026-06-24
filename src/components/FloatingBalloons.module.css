@@ -1,0 +1,68 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 3; /* above canvas fireworks, below content */
+  overflow: hidden;
+}
+
+.balloonContainer {
+  position: absolute;
+  bottom: -150px;
+  animation: floatUp 15s linear infinite;
+  opacity: 0;
+}
+
+.balloon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: sway 4s ease-in-out infinite alternate;
+  animation-delay: inherit;
+}
+
+.string {
+  transform-origin: top center;
+  animation: stringWiggle 2.5s ease-in-out infinite alternate;
+  animation-delay: inherit;
+}
+
+/* Hover popup effect (if balloon cursor is somehow reached on desktop, though it is pointer-events: none by default. We keep pointer-events: none to avoid blocking user clicks!) */
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  95% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-115vh);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0% {
+    transform: translateX(-15px) rotate(-6deg);
+  }
+  100% {
+    transform: translateX(15px) rotate(6deg);
+  }
+}
+
+@keyframes stringWiggle {
+  0% {
+    transform: rotate(-10deg) skewX(-5deg);
+  }
+  100% {
+    transform: rotate(10deg) skewX(5deg);
+  }
+}

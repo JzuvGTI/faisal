@@ -1,0 +1,52 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 4; /* below content, above fireworks */
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -20px;
+  background: var(--rose-light);
+  border-radius: 150% 0 150% 150%; /* petal shape */
+  opacity: 0.7;
+  transform-origin: left bottom;
+  animation: fall 10s linear infinite, swing 3s ease-in-out infinite alternate;
+}
+
+/* Alternate shape for some petals */
+.petalAlt {
+  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%; /* wider petal */
+  background: var(--rose-dark);
+}
+
+.petalSage {
+  background: var(--sage-light);
+  border-radius: 100% 0 100% 100%;
+  opacity: 0.5;
+}
+
+@keyframes fall {
+  0% {
+    top: -50px;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    top: 105vh;
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+@keyframes swing {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}

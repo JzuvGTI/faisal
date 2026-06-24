@@ -1,0 +1,129 @@
+.playerContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--sage-light);
+  padding: 8px 16px;
+  border-radius: 40px;
+  box-shadow: 0 8px 32px rgba(119, 136, 115, 0.15);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.playerContainer:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: var(--sage-dark);
+}
+
+.vinylWrapper {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.vinyl {
+  width: 100%;
+  height: 100%;
+  background: #2d332b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid #555;
+}
+
+.vinylPlaying {
+  animation: rotate 3s linear infinite;
+}
+
+.vinylCenter {
+  width: 14px;
+  height: 14px;
+  background: var(--rose-light);
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinylCenterDot {
+  width: 4px;
+  height: 4px;
+  background: #2d332b;
+  border-radius: 50%;
+}
+
+.noteIcon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--rose-light);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  animation: float 2s ease-in-out infinite alternate;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sage-dark);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: var(--rose-dark);
+  margin: 0;
+  white-space: nowrap;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+/* Hide visual music player on Android/mobile viewports */
+@media (max-width: 600px) {
+  .playerContainer {
+    display: none !important;
+  }
+}
+
+

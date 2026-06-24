@@ -1,0 +1,325 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 40px auto;
+  position: relative;
+}
+
+/* Notebook Lined Paper */
+.paper {
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  min-width: 300px;
+  height: 540px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: #fafafa;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.clickablePaper {
+  cursor: pointer;
+}
+
+.clickablePaper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+}
+
+/* Spiral rings and red margin line */
+.paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 45px;
+  background: radial-gradient(#737373 5px, transparent 6px) repeat-y;
+  background-size: 30px 30px;
+  border-right: 3px solid #D44147;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+/* Blue horizontal lines */
+.paperContent {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  bottom: 30px;
+  left: 50px;
+  background: linear-gradient(transparent, transparent 29px, #91D1D3 29px);
+  background-size: 30px 30px;
+  box-sizing: border-box;
+}
+
+/* Cover / Intro Screen styling */
+.coverLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px 40px;
+  text-align: center;
+}
+
+.coverTitle {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 26px;
+  color: var(--rose-dark);
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.coverDesc {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.bacaBtn {
+  background-color: var(--rose-light);
+  color: white;
+  border: none;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: 'Quicksand', sans-serif;
+  box-shadow: 0 4px 15px rgba(229, 152, 155, 0.4);
+  transition: all 0.2s ease-in-out;
+}
+
+.bacaBtn:hover {
+  background-color: var(--rose-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(181, 130, 140, 0.5);
+}
+
+.bacaBtn:active {
+  transform: translateY(0);
+}
+
+/* Typewriter layout and lines */
+.textLayout {
+  height: 100%;
+  padding: 10px 10px 40px 15px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.teks {
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  line-height: 30px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #3f3f44;
+  font-family: 'Handlee', cursive;
+  font-size: 18px;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.tapPrompt {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  color: #888;
+  font-style: italic;
+  animation: pulseFlash 1.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseFlash {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Thanks page styling */
+.thanksLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.heartWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.heartIcon {
+  width: 90px;
+  height: 90px;
+  color: #d44147;
+  animation: heartPulse 1.2s infinite;
+  filter: drop-shadow(0 4px 10px rgba(212, 65, 71, 0.3));
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+.teksCenter {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  line-height: 30px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #3f3f44;
+  font-family: 'Handlee', cursive;
+  font-size: 22px;
+  font-weight: 700;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+}
+
+/* Feedback Box (Kamu suka nggak?) */
+.kotak {
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  min-width: 280px;
+  padding: 40px 30px;
+  background: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.feedbackTitle {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.feedbackButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  position: relative;
+  min-height: 70px;
+}
+
+.sukaBtn, .gakBtn {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.sukaBtn {
+  background-color: var(--sage-light);
+  color: white;
+  box-shadow: 0 4px 12px rgba(161, 188, 152, 0.4);
+  transition: all 0.2s ease;
+}
+
+.sukaBtn:hover {
+  background-color: var(--sage-dark);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.sukaBtn:active {
+  transform: translateY(0);
+}
+
+.gakBtn {
+  background-color: transparent;
+  color: #d44147;
+  border: 2px solid #d44147;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(212, 65, 71, 0.15);
+  transition: transform 0.15s ease-out;
+}
+
+.gakBtn:hover {
+  background-color: rgba(212, 65, 71, 0.05);
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 600px) {
+  .paper {
+    height: 480px;
+  }
+  .paper::before {
+    left: 2px;
+    width: 38px;
+    background-size: 25px 25px;
+  }
+  .paperContent {
+    left: 42px;
+    top: 25px;
+    bottom: 25px;
+    background: linear-gradient(transparent, transparent 24px, #91D1D3 24px);
+    background-size: 25px 25px;
+  }
+  .teks {
+    font-size: 15px;
+    line-height: 25px;
+  }
+  .coverTitle {
+    font-size: 22px;
+  }
+  .coverDesc {
+    font-size: 14px;
+  }
+  .teksCenter {
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .heartIcon {
+    width: 70px;
+    height: 70px;
+  }
+  .feedbackTitle {
+    font-size: 20px;
+  }
+}
