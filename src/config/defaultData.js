@@ -62,7 +62,7 @@ export const defaultBirthdayData = {
       {
         id: 1,
         type: "image",
-        src: "/assets/Isal3.jpg",
+        src: "/assets/Isal1.jpg",
         title: "Zaman SMP",
         description: "Setiap kenangan bersamamu adalah berkas cahaya manis yang selalu menghangatkan hari-hari."
       },
@@ -76,7 +76,7 @@ export const defaultBirthdayData = {
       {
         id: 3,
         type: "image",
-        src: "/assets/Isal1.jpg",
+        src: "/assets/Isal3.jpg",
         title: "Nadin Day! 💖",
         description: "Hari yang sangat spesial untuk seseorang yang luar biasa manis! Selamat ulang tahun yang ke-20!"
       }
