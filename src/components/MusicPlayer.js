@@ -12,9 +12,9 @@ export default function MusicPlayer({
   const audioRef = useRef(null);
 
   const enabled = musicData.enabled !== false;
-  const audioSrc = musicData.src || '/assets/monokrom.mp3';
-  const title = musicData.title || 'Monokrom - Tulus';
-  const subPlaying = musicData.subPlaying || 'Memutar musik...';
+  const audioSrc = musicData.src || '/assets/nadhif-bergema-sampai-selamanya.mp3';
+  const title = musicData.title || 'Nadhif Basalamah - bergema sampai selamanya';
+  const subPlaying = musicData.subPlaying || 'Memutar Nadhif Basalamah - bergema sampai selamanya...';
   const subPaused = musicData.subPaused || 'Klik piringan untuk memutar!';
 
   // Sync with external trigger (e.g. intro screen tap, cake candles blown out, or video play state)

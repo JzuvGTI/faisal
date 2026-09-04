@@ -81,7 +81,7 @@ export const defaultBirthdayData = {
   },
   music: {
     enabled: true,
-    src: "/assets/monokrom.mp3",
+    src: "/assets/nadhif-bergema-sampai-selamanya.mp3",
     title: "Nadhif Basalamah - bergema sampai selamanya",
     subPlaying: "Memutar Nadhif Basalamah - bergema sampai selamanya...",
     subPaused: "Klik piringan untuk memutar!"
