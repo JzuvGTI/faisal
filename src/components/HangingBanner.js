@@ -10,9 +10,12 @@ const PALETTE = [
   '#A1BC98'  // Sage Light
 ];
 
-export default function HangingBanner() {
-  const row1 = 'HAPPY'.split('');
-  const row2 = 'BIRTHDAY'.split('');
+export default function HangingBanner({ 
+  textRow1 = 'HAPPY', 
+  textRow2 = 'BIRTHDAY' 
+}) {
+  const row1 = (textRow1 || 'HAPPY').toUpperCase().replace(/[^A-Z0-9!?-]/g, '').split('');
+  const row2 = (textRow2 || 'BIRTHDAY').toUpperCase().replace(/[^A-Z0-9!?-]/g, '').split('');
 
   // Vector ribbon bow SVG
   const renderBow = () => (
@@ -31,6 +34,8 @@ export default function HangingBanner() {
   );
 
   const renderRow = (letters, isRow1) => {
+    if (!letters || letters.length === 0) return null;
+
     return (
       <div className={styles.flagsContainer}>
         {/* Wavy hanging rope string */}
@@ -89,12 +94,16 @@ export default function HangingBanner() {
 
   return (
     <div className={styles.bannerSection}>
-      <div className={`${styles.row} ${styles.row1}`}>
-        {renderRow(row1, true)}
-      </div>
-      <div className={`${styles.row} ${styles.row2}`}>
-        {renderRow(row2, false)}
-      </div>
+      {row1.length > 0 && (
+        <div className={`${styles.row} ${styles.row1}`}>
+          {renderRow(row1, true)}
+        </div>
+      )}
+      {row2.length > 0 && (
+        <div className={`${styles.row} ${styles.row2}`}>
+          {renderRow(row2, false)}
+        </div>
+      )}
     </div>
   );
 }

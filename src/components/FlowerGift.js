@@ -3,33 +3,50 @@
 import React, { useState } from 'react';
 import styles from './FlowerGift.module.css';
 
-export default function FlowerGift({ isTriggered }) {
+export default function FlowerGift({ 
+  isTriggered,
+  flowerData = {}
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!isTriggered) return null;
+  const enabled = flowerData.enabled !== false;
+  if (!isTriggered || !enabled) return null;
+
+  const giftCardTitle = flowerData.giftCardTitle || "Kado Spesial untuk Dahayu";
+  const giftCardSubtitle = flowerData.giftCardSubtitle || "Ketuk kado ini untuk membukanya...";
+  const bouquetImageSrc = flowerData.bouquetImageSrc || "/assets/flower_bouquet.jpg";
+  const bouquetTitle = flowerData.bouquetTitle || "Buket Bunga Terindah untuk Dahayu 🌸✨";
+  const bouquetText = flowerData.bouquetText || "Buket bunga mawar merah muda lembut melambangkan keanggunan, kebaikan hatimu yang tulus, serta kasih sayang yang mengelilingimu.\n\nTulip putih melambangkan kemurnian harapan baru dan doa tulus di usiamu yang ke-20 tahun ini. Semoga hari-harimu seindah mekarnya bunga-bunga ini!";
 
   return (
     <div className={styles.giftSection}>
       {!isOpen ? (
         <div className={styles.giftCard} onClick={() => setIsOpen(true)}>
           <div className={styles.giftIcon}>🎁💐</div>
-          <h3 className={styles.giftTitle}>Kado Spesial untuk Dahayu</h3>
-          <p className={styles.giftSubtitle}>Ketuk kado ini untuk membukanya...</p>
+          <h3 className={styles.giftTitle}>{giftCardTitle}</h3>
+          <p className={styles.giftSubtitle}>{giftCardSubtitle}</p>
         </div>
       ) : (
         <div className={styles.giftCard} style={{ cursor: 'default' }}>
           <div className={styles.bouquetContainer}>
             <img 
-              src="/assets/flower_bouquet.jpg" 
-              alt="Buket Bunga Cantik" 
+              src={bouquetImageSrc} 
+              alt={bouquetTitle} 
               className={styles.bouquetImage}
             />
             <div className={styles.bouquetInfo}>
-              <h3 className={styles.bouquetTitle}>Buket Bunga Terindah untuk Dahayu 🌸✨</h3>
+              <h3 className={styles.bouquetTitle}>{bouquetTitle}</h3>
               <p className={styles.bouquetText}>
-                Buket bunga mawar merah muda lembut melambangkan keanggunan, kebaikan hatimu yang tulus, serta kasih sayang yang mengelilingimu.
-                <br /><br />
-                Tulip putih melambangkan kemurnian harapan baru dan doa tulus di usiamu yang ke-20 tahun ini. Semoga hari-harimu seindah mekarnya bunga-bunga ini!
+                {bouquetText.split('\n\n').map((paragraph, i) => (
+                  <React.Fragment key={i}>
+                    {paragraph}
+                    {i < bouquetText.split('\n\n').length - 1 && (
+                      <>
+                        <br /><br />
+                      </>
+                    )}
+                  </React.Fragment>
+                ))}
               </p>
             </div>
           </div>

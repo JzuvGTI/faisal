@@ -13,14 +13,28 @@ import Fireworks from '../components/Fireworks';
 import FallingFlowers from '../components/FallingFlowers';
 import FloatingBalloons from '../components/FloatingBalloons';
 import confetti from 'canvas-confetti';
+import { loadBirthdayData } from '../utils/dataStorage';
+import { defaultBirthdayData } from '../config/defaultData';
 
 export default function Home() {
+  const [data, setData] = useState(defaultBirthdayData);
   const [isBlownOut, setIsBlownOut] = useState(false);
   const [isLetterFinished, setIsLetterFinished] = useState(false);
   const [userWish, setUserWish] = useState('');
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [isIntroActive, setIsIntroActive] = useState(true);
   const [isIntroExiting, setIsIntroExiting] = useState(false);
+
+  // Load custom data on mount
+  useEffect(() => {
+    async function init() {
+      const loaded = await loadBirthdayData();
+      if (loaded) {
+        setData(loaded);
+      }
+    }
+    init();
+  }, []);
 
   const handleIntroClick = () => {
     setIsIntroExiting(true);
@@ -89,81 +103,99 @@ export default function Home() {
           onClick={handleIntroClick}
         >
           <img 
-            src="/assets/intro-happy-birthday.png" 
+            src={data.intro?.imageSrc || "/assets/intro-happy-birthday.png"} 
             alt="Happy Birthday Intro" 
             className={`${styles.introImage} ${styles.animate__animated} ${styles.animate__slideInDown} ${styles.animate__slow}`}
           />
           <div className={styles.introTapPrompt}>
-            Ketuk untuk membuka kado... 🎁
+            {data.intro?.tapPrompt || "Ketuk untuk membuka kado... 🎁"}
           </div>
         </div>
       )}
+
       <main className={`${styles.main} ${isIntroExiting ? `${styles.animate__animated} ${styles.animate__slideInUp}` : ''}`}>
-      {/* Interactive Background Fireworks */}
-      <Fireworks isTriggered={isBlownOut} />
+        {/* Interactive Background Fireworks */}
+        <Fireworks isTriggered={isBlownOut} />
 
-      {/* Falling Flower Petals and Sage Leaves */}
-      <FallingFlowers isTriggered={isBlownOut} />
+        {/* Falling Flower Petals and Sage Leaves */}
+        <FallingFlowers isTriggered={isBlownOut} />
 
-      {/* Glossy Vector Floating Balloons (1-Page loop) */}
-      <FloatingBalloons />
+        {/* Glossy Vector Floating Balloons (1-Page loop) */}
+        <FloatingBalloons />
 
-      {/* Custom Swaying Vector Banner */}
-      <HangingBanner />
+        {/* Custom Swaying Vector Banner */}
+        <HangingBanner />
 
-      {/* Header Title Section */}
-      <header className={styles.header}>
-        <h1 className={styles.title}>Happy Birthday Dahayu Zashika Wikrama</h1>
-        <p className={styles.subtitle}>
-          {isBlownOut 
-            ? "✨ Selamat Ulang Tahun yang ke-20! ✨" 
-            : "🎂 Usap semua lilin untuk meniupnya & membuat keinginanmu nyata! 🕯️"}
-        </p>
-      </header>
+        {/* Header Title Section */}
+        <header className={styles.header}>
+          <h1 className={styles.title}>
+            {data.header?.title || `Happy Birthday ${data.recipientName || 'Dahayu'}`}
+          </h1>
+          <p className={styles.subtitle}>
+            {isBlownOut 
+              ? (data.header?.subtitleBlown || "✨ Selamat Ulang Tahun yang ke-20! ✨")
+              : (data.header?.subtitleUnblown || "🎂 Usap semua lilin untuk meniupnya & membuat keinginanmu nyata! 🕯️")}
+          </p>
+        </header>
 
-      {/* Interactive Birthday Cake */}
-      <BirthdayCake onAllCandlesBlownOut={handleAllCandlesBlownOut} />
+        {/* Interactive Birthday Cake */}
+        <BirthdayCake 
+          onAllCandlesBlownOut={handleAllCandlesBlownOut}
+          wishPlaceholder={data.cake?.wishPlaceholder}
+          wishSubmittedHint={data.cake?.wishSubmittedHint}
+        />
 
-      {/* Notebook Paper Letter (revealed after candles are blown out) */}
-      {isBlownOut && (
-        <div className={styles.sectionTransition}>
-          <PaperLetter 
-            isTriggered={isBlownOut} 
-            onComplete={() => setIsLetterFinished(true)} 
+        {/* Notebook Paper Letter (revealed after candles are blown out) */}
+        {isBlownOut && (
+          <div className={styles.sectionTransition}>
+            <PaperLetter 
+              isTriggered={isBlownOut} 
+              letterData={data.letter}
+              onComplete={() => setIsLetterFinished(true)} 
+            />
+          </div>
+        )}
+
+        {/* Flower Bouquet Gift (revealed after paper letter is completed) */}
+        {isLetterFinished && data.flowerGift?.enabled !== false && (
+          <div className={styles.sectionTransition} style={{ animationDelay: '0.2s' }}>
+            <FlowerGift 
+              isTriggered={isLetterFinished} 
+              flowerData={data.flowerGift}
+            />
+          </div>
+        )}
+
+        {/* Special Video or Main Photo Player (revealed after paper letter is completed) */}
+        {isLetterFinished && data.mediaCard?.enabled !== false && (
+          <div className={styles.sectionTransition} style={{ animationDelay: '0.4s' }}>
+            <VideoCard 
+              isTriggered={isLetterFinished} 
+              mediaData={data.mediaCard}
+              onVideoPlay={() => setIsPlayingMusic(false)}
+              onVideoPause={() => setIsPlayingMusic(true)}
+            />
+          </div>
+        )}
+
+        {/* Memory Clothesline (revealed after paper letter is completed) */}
+        {isLetterFinished && data.clothesline?.enabled !== false && (
+          <div className={styles.sectionTransition} style={{ animationDelay: '0.6s' }}>
+            <ClotheslineGallery 
+              isTriggered={isLetterFinished} 
+              clotheslineData={data.clothesline}
+            />
+          </div>
+        )}
+
+        {/* Floating Audio Player */}
+        {data.music?.enabled !== false && (
+          <MusicPlayer 
+            musicData={data.music}
+            isPlayingExternal={isPlayingMusic} 
+            onPlayStateChange={handlePlayStateChange} 
           />
-        </div>
-      )}
-
-      {/* Flower Bouquet Gift (revealed after paper letter is completed) */}
-      {isLetterFinished && (
-        <div className={styles.sectionTransition} style={{ animationDelay: '0.2s' }}>
-          <FlowerGift isTriggered={isLetterFinished} />
-        </div>
-      )}
-
-      {/* Special Video Player (revealed after paper letter is completed) */}
-      {isLetterFinished && (
-        <div className={styles.sectionTransition} style={{ animationDelay: '0.4s' }}>
-          <VideoCard 
-            isTriggered={isLetterFinished} 
-            onVideoPlay={() => setIsPlayingMusic(false)}
-            onVideoPause={() => setIsPlayingMusic(true)}
-          />
-        </div>
-      )}
-
-      {/* Memory Clothesline (revealed after paper letter is completed) */}
-      {isLetterFinished && (
-        <div className={styles.sectionTransition} style={{ animationDelay: '0.6s' }}>
-          <ClotheslineGallery isTriggered={isLetterFinished} />
-        </div>
-      )}
-
-      {/* Floating Audio Player */}
-      <MusicPlayer 
-        isPlayingExternal={isPlayingMusic} 
-        onPlayStateChange={handlePlayStateChange} 
-      />
+        )}
       </main>
     </>
   );

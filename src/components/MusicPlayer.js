@@ -3,9 +3,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './MusicPlayer.module.css';
 
-export default function MusicPlayer({ isPlayingExternal, onPlayStateChange }) {
+export default function MusicPlayer({ 
+  musicData = {},
+  isPlayingExternal, 
+  onPlayStateChange 
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+
+  const enabled = musicData.enabled !== false;
+  const audioSrc = musicData.src || '/assets/monokrom.mp3';
+  const title = musicData.title || 'Monokrom - Tulus';
+  const subPlaying = musicData.subPlaying || 'Memutar musik...';
+  const subPaused = musicData.subPaused || 'Klik piringan untuk memutar!';
 
   // Sync with external trigger (e.g. intro screen tap, cake candles blown out, or video play state)
   useEffect(() => {
@@ -53,11 +63,13 @@ export default function MusicPlayer({ isPlayingExternal, onPlayStateChange }) {
     }
   };
 
+  if (!enabled) return null;
+
   return (
     <div className={styles.playerContainer}>
       <audio 
         ref={audioRef} 
-        src="/assets/monokrom.mp3" 
+        src={audioSrc} 
         loop 
         preload="auto"
       />
@@ -77,9 +89,9 @@ export default function MusicPlayer({ isPlayingExternal, onPlayStateChange }) {
       </div>
       
       <div className={styles.info}>
-        <h4 className={styles.title}>Monokrom - Tulus</h4>
+        <h4 className={styles.title}>{title}</h4>
         <p className={styles.subtitle}>
-          {isPlaying ? 'Memutar Monokrom...' : 'Klik piringan untuk memutar!'}
+          {isPlaying ? subPlaying : subPaused}
         </p>
       </div>
     </div>

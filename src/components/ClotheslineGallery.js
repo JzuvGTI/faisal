@@ -3,52 +3,31 @@
 import React, { useState } from 'react';
 import styles from './ClotheslineGallery.module.css';
 
-const ITEMS = [
-  {
-    id: 1,
-    type: 'image',
-    src: '/assets/R652026121319_raw8.jpeg',
-    title: 'Memories 🌟',
-    description: 'Setiap kenangan bersamamu adalah berkas cahaya manis yang selalu menghangatkan hari-hari.'
-  },
-  {
-    id: 2,
-    type: 'image',
-    src: '/assets/R652026121319_raw6.jpeg',
-    title: 'Keep Shining ✨',
-    description: 'Semoga di usia yang baru ini, binar matamu tetap penuh semangat untuk mengejar segala cita-citamu.'
-  },
-  {
-    id: 3,
-    type: 'gif',
-    src: '/assets/G652026121318.gif',
-    title: 'Dahayu Day! 💖',
-    description: 'Hari yang sangat spesial untuk seseorang yang luar biasa manis! Selamat ulang tahun yang ke-20!'
-  },
-  {
-    id: 4,
-    type: 'image',
-    src: '/assets/R65202612049_picked1.jpeg',
-    title: 'Sweet Smile 😊',
-    description: 'Senyuman dan tawa ceriamu adalah dekorasi terindah yang selalu membawa kedamaian.'
-  },
-  {
-    id: 5,
-    type: 'image',
-    src: '/assets/R652026121320_picked1.jpeg',
-    title: 'Cheer Up! 🎈',
-    description: 'Teruslah tumbuh menjadi versi terbaik dirimu dengan penuh cinta, sukacita, dan kedamaian.'
-  }
-];
-
-export default function ClotheslineGallery({ isTriggered }) {
+export default function ClotheslineGallery({ 
+  isTriggered,
+  clotheslineData = {} 
+}) {
   const [activeItem, setActiveItem] = useState(null);
 
-  if (!isTriggered) return null;
+  const enabled = clotheslineData.enabled !== false;
+  if (!isTriggered || !enabled) return null;
+
+  const title = clotheslineData.title || 'Jemuran Kenangan Dahayu 🧸🎀';
+  const items = Array.isArray(clotheslineData.items) && clotheslineData.items.length > 0 
+    ? clotheslineData.items 
+    : [
+        {
+          id: 1,
+          type: 'image',
+          src: '/assets/R652026121319_raw8.jpeg',
+          title: 'Memories 🌟',
+          description: 'Setiap kenangan bersamamu adalah berkas cahaya manis yang selalu menghangatkan hari-hari.'
+        }
+      ];
 
   return (
     <section className={styles.section}>
-      <h2 className={styles.title}>Jemuran Kenangan Dahayu 🧸🎀</h2>
+      <h2 className={styles.title}>{title}</h2>
       
       <div className={styles.clotheslineWrapper}>
         {/* Curving rope SVG line */}
@@ -59,18 +38,18 @@ export default function ClotheslineGallery({ isTriggered }) {
 
         {/* Clothespins & Polaroid Cards */}
         <div className={styles.cardsContainer}>
-          {ITEMS.map((item, idx) => {
+          {items.map((item, idx) => {
             const delay = `${idx * 0.3}s`;
             const isGif = item.type === 'gif';
             
             return (
               <div 
-                key={item.id}
+                key={item.id || idx}
                 className={`${styles.polaroidCard} ${isGif ? styles.gifCard : ''}`}
                 style={{ 
                   '--delay': delay,
-                  // Vary rotation angle slightly for hanging effect
-                  transform: `rotate(${(idx - 2) * 2.5}deg)`
+                  // Vary rotation angle slightly for natural hanging effect
+                  transform: `rotate(${((idx % 5) - 2) * 2.5}deg)`
                 }}
                 onClick={() => setActiveItem(item)}
               >
@@ -81,7 +60,7 @@ export default function ClotheslineGallery({ isTriggered }) {
                 <div className={`${styles.photoArea} ${isGif ? styles.gifPhotoArea : ''}`}>
                   <img 
                     src={item.src} 
-                    alt={item.title} 
+                    alt={item.title || `Foto ${idx + 1}`} 
                     className={styles.photo} 
                   />
                 </div>

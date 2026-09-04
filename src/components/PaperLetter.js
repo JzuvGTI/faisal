@@ -4,12 +4,38 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './PaperLetter.module.css';
 import confetti from 'canvas-confetti';
 
-export default function PaperLetter({ isTriggered, onComplete }) {
+export default function PaperLetter({ 
+  isTriggered, 
+  onComplete,
+  letterData = {} 
+}) {
   const [step, setStep] = useState('intro'); // intro -> page1 -> page2 -> feedback -> thanks
   const [typedText, setTypedText] = useState('');
   const [isTypingFinished, setIsTypingFinished] = useState(false);
   const [gakOffset, setGakOffset] = useState({ x: 0, y: 0 });
   const paperRef = useRef(null);
+
+  const coverTitle = letterData.coverTitle || "Untuk Dahayu Zashika Wikrama 🌸";
+  const coverDesc = letterData.coverDesc || "Ada sebuah tulisan kecil di selembar kertas ini.\nKetuk tombol di bawah untuk membacanya.";
+  const bacaBtnText = letterData.bacaBtnText || "Baca Surat";
+  const page1Lines = letterData.page1Lines || [
+    "Hari ini, saya langitkan semua doa terbaik saya untuk Dahayu.",
+    "Semoga hal-hal yang membuat Dahayu runtuh turut menjadi alasan Dahayu untuk tetap tumbuh.",
+    "Semoga dunia senantiasa menjaga Dahayu dimanapun Dahayu berada.",
+    "Semoga hari-hari Dahayu selalu diiringi cinta yang tak pernah ada batasnya.",
+    "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang Dahayu inginkan."
+  ];
+  const page2Lines = letterData.page2Lines || [
+    "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Dahayu bagimanapun caranya.",
+    "",
+    "Barakallah fi umrik, terima kasih sudah bertahan sampai sejauh ini.",
+    "",
+    "- Wish you all the best"
+  ];
+  const feedbackTitle = letterData.feedbackTitle || "Kamu suka nggak? 🥺";
+  const feedbackGakBtn = letterData.feedbackGakBtn || "Gak! 😢";
+  const feedbackSukaBtn = letterData.feedbackSukaBtn || "Suka!! ❤️";
+  const thanksText = letterData.thanksText || "Terimakasih.";
 
   // Typewriter effect logic
   useEffect(() => {
@@ -20,23 +46,11 @@ export default function PaperLetter({ isTriggered, onComplete }) {
     let startDelay = 500;
 
     if (step === 'page1') {
-      textToType = [
-        "Hari ini, saya langitkan semua doa terbaik saya untuk Dahayu.",
-        "Semoga hal-hal yang membuat Dahayu runtuh turut menjadi alasan Dahayu untuk tetap tumbuh.",
-        "Semoga dunia senantiasa menjaga Dahayu dimanapun Dahayu berada.",
-        "Semoga hari-hari Dahayu selalu diiringi cinta yang tak pernah ada batasnya.",
-        "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang Dahayu inginkan."
-      ].join('\n');
+      textToType = Array.isArray(page1Lines) ? page1Lines.join('\n') : String(page1Lines);
     } else if (step === 'page2') {
-      textToType = [
-        "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Dahayu bagimanapun caranya.",
-        "",
-        "Barakallah fi umrik, terima kasih sudah bertahan sampai sejauh ini.",
-        "",
-        "- Wish you all the best"
-      ].join('\n');
+      textToType = Array.isArray(page2Lines) ? page2Lines.join('\n') : String(page2Lines);
     } else if (step === 'thanks') {
-      textToType = "Terimakasih.";
+      textToType = thanksText;
       charSpeed = 100;
     }
 
@@ -68,7 +82,7 @@ export default function PaperLetter({ isTriggered, onComplete }) {
       clearTimeout(startTimer);
       clearTimeout(timerId);
     };
-  }, [step]);
+  }, [step, page1Lines, page2Lines, thanksText]);
 
   if (!isTriggered) return null;
 
@@ -91,12 +105,9 @@ export default function PaperLetter({ isTriggered, onComplete }) {
   const handleGakTrigger = (e) => {
     e.stopPropagation();
     
-    // Generate a random translation offset to escape the cursor/touch
-    // Keep it within a safe bounding circle/box
     let randomX = Math.floor(Math.random() * 240) - 120; // -120px to 120px
     let randomY = Math.floor(Math.random() * 160) - 80;  // -80px to 80px
     
-    // Prevent it from staying in the exact same place
     if (Math.abs(randomX - gakOffset.x) < 40) {
       randomX += randomX > 0 ? 50 : -50;
     }
@@ -141,17 +152,20 @@ export default function PaperLetter({ isTriggered, onComplete }) {
             {/* INTRO COVER STATE */}
             {step === 'intro' && (
               <div className={styles.coverLayout}>
-                <h3 className={styles.coverTitle}>Untuk Dahayu Zashika Wikrama 🌸</h3>
+                <h3 className={styles.coverTitle}>{coverTitle}</h3>
                 <p className={styles.coverDesc}>
-                  Ada sebuah tulisan kecil di selembar kertas ini.
-                  <br />
-                  Ketuk tombol di bawah untuk membacanya.
+                  {coverDesc.split('\n').map((line, i) => (
+                    <React.Fragment key={i}>
+                      {line}
+                      {i < coverDesc.split('\n').length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
                 </p>
                 <button 
                   className={styles.bacaBtn} 
                   onClick={handleBacaClick}
                 >
-                  Baca Surat
+                  {bacaBtnText}
                 </button>
               </div>
             )}
@@ -189,10 +203,10 @@ export default function PaperLetter({ isTriggered, onComplete }) {
         </div>
       )}
 
-      {/* Step: Feedback Dialog Box (styled separately like the GitHub repository) */}
+      {/* Step: Feedback Dialog Box */}
       {step === 'feedback' && (
         <div className={`${styles.kotak}`}>
-          <h4 className={styles.feedbackTitle}>Kamu suka nggak? 🥺</h4>
+          <h4 className={styles.feedbackTitle}>{feedbackTitle}</h4>
           <div className={styles.feedbackButtons}>
             
             {/* Runaway "Gak!" Button */}
@@ -206,7 +220,7 @@ export default function PaperLetter({ isTriggered, onComplete }) {
               onTouchStart={handleGakTrigger}
               onClick={handleGakTrigger}
             >
-              Gak! 😢
+              {feedbackGakBtn}
             </button>
 
             {/* Normal "Suka!!" Button */}
@@ -214,7 +228,7 @@ export default function PaperLetter({ isTriggered, onComplete }) {
               className={styles.sukaBtn}
               onClick={handleSukaClick}
             >
-              Suka!! ❤️
+              {feedbackSukaBtn}
             </button>
             
           </div>

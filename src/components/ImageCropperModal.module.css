@@ -1,0 +1,226 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(45, 51, 43, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modalCard {
+  background: white;
+  border-radius: 18px;
+  padding: 22px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleUp 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.modalTitle {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 18px;
+  color: var(--rose-dark, #B5828C);
+  margin: 0;
+}
+
+.closeBtn {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  background: #e0e0e0;
+  color: #111;
+}
+
+/* Canvas Viewport */
+.canvasWrapper {
+  position: relative;
+  width: 340px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.15);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  background: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvasWrapper:active {
+  cursor: grabbing;
+}
+
+.cropCanvas {
+  display: block;
+}
+
+/* Rule of Thirds Guidelines */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+}
+
+.gridLineH1, .gridLineH2, .gridLineV1, .gridLineV2 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.gridLineH1 { top: 33.33%; left: 0; right: 0; height: 1px; }
+.gridLineH2 { top: 66.66%; left: 0; right: 0; height: 1px; }
+.gridLineV1 { left: 33.33%; top: 0; bottom: 0; width: 1px; }
+.gridLineV2 { left: 66.66%; top: 0; bottom: 0; width: 1px; }
+
+.tipText {
+  font-size: 12px;
+  color: #777;
+  margin: 10px 0 14px 0;
+  text-align: center;
+}
+
+/* Controls */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 18px;
+  background: #faf7f2;
+  padding: 10px 14px;
+  border-radius: 12px;
+}
+
+.zoomControl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.controlLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sage-dark, #778873);
+  white-space: nowrap;
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--rose-light, #E5989B);
+  cursor: pointer;
+}
+
+.rotateBtn {
+  background: white;
+  border: 1px solid var(--sage-light, #A1BC98);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sage-dark, #778873);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.rotateBtn:hover {
+  background: var(--sage-light, #A1BC98);
+  color: white;
+}
+
+/* Actions */
+.actionsRow {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 10px 16px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 25px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancelBtn:hover {
+  background: #e2e2e2;
+  color: #333;
+}
+
+.saveBtn {
+  flex: 2;
+  padding: 10px 16px;
+  background: var(--rose-light, #E5989B);
+  border: none;
+  border-radius: 25px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(229, 152, 155, 0.35);
+  transition: all 0.2s;
+}
+
+.saveBtn:hover {
+  background: var(--rose-dark, #B5828C);
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .canvasWrapper {
+    width: 280px;
+  }
+}

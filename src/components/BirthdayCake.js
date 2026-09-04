@@ -13,12 +13,16 @@ const CANDLE_COLORS = [
   '#E8C39E'  // Soft Apricot
 ];
 
-export default function BirthdayCake({ onAllCandlesBlownOut }) {
+export default function BirthdayCake({ 
+  onAllCandlesBlownOut,
+  wishPlaceholder = "Tuliskan harapanmu, lalu usap lilin untuk meniupnya...",
+  wishSubmittedHint = "\"Harapanmu telah ditiupkan...\""
+}) {
   const [candles, setCandles] = useState([]);
   const [wish, setWish] = useState('');
   const [showInput, setShowInput] = useState(true);
 
-  // Generate 20 candles in a semi-elliptical arc matching the cake top surface
+  // Generate 5 candles in a semi-elliptical arc matching the cake top surface
   useEffect(() => {
     const list = [];
     const count = 5;
@@ -102,7 +106,7 @@ export default function BirthdayCake({ onAllCandlesBlownOut }) {
           className={styles.cakeImage} 
         />
         
-        {/* Render 20 Candles */}
+        {/* Render 5 Candles */}
         <div 
           className={styles.candlesContainer}
           onTouchMove={handleTouchMove}
@@ -149,14 +153,14 @@ export default function BirthdayCake({ onAllCandlesBlownOut }) {
           <input
             type="text"
             className={styles.wishInput}
-            placeholder="Tuliskan harapanmu, lalu usap lilin untuk meniupnya..."
+            placeholder={wishPlaceholder}
             value={wish}
             onChange={(e) => setWish(e.target.value)}
           />
         ) : (
           wish && (
             <p className={styles.hint} style={{ fontStyle: 'italic', fontSize: '14px', color: 'var(--rose-dark)' }}>
-              "Harapanmu telah ditiupkan..."
+              {wishSubmittedHint}
             </p>
           )
         )}
