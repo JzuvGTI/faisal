@@ -16,7 +16,7 @@ export default function FlowerGift({
   const giftCardSubtitle = flowerData.giftCardSubtitle || "Ketuk kado ini untuk membukanya...";
   const bouquetImageSrc = flowerData.bouquetImageSrc || "/assets/Isal4.png";
   const bouquetTitle = flowerData.bouquetTitle || "Buket Bunga Terindah untuk Nadin🌸✨";
-  const bouquetText = flowerData.bouquetText || "Buket bunga mawar merah muda lembut melambangkan keanggunan, kebaikan hatimu yang tulus, serta kasih sayang yang mengelilingimu.\n\nTulip putih melambangkan kemurnian harapan baru dan doa tulus di usiamu yang ke-20 tahun ini. Semoga hari-harimu seindah mekarnya bunga-bunga ini!";
+  const bouquetText = flowerData.bouquetText || "Buket mawar merah muda ini untuk Nadin, melambangkan kelembutan, keanggunan, dan kebaikan hati Nadin yang tulus. Setiap bunganya membawa doa dan harapan baik untuk usia Nadin yang ke-20. Semoga langkah Nadin ke depannya selalu dipenuhi kebahagiaan, cinta, dan hal-hal indah yang Nadin layak dapatkan. 🤍🌷";
 
   return (
     <div className={styles.giftSection}>

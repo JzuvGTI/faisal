@@ -19,20 +19,23 @@ export const defaultBirthdayData = {
     coverDesc: "Ada sebuah tulisan kecil di selembar kertas ini.\nKetuk tombol di bawah untuk membacanya.",
     bacaBtnText: "Baca Surat",
     page1Lines: [
-      "Hari ini, saya langitkan semua doa terbaik saya untuk Nadin.",
-      "Semoga hal-hal yang membuat Nadin runtuh turut menjadi alasan Nadin untuk tetap tumbuh.",
-      "Semoga dunia senantiasa menjaga Nadin dimanapun Nadin berada.",
-      "Semoga hari-hari Nadin selalu diiringi cinta yang tak pernah ada batasnya.",
-      "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang Nadin inginkan."
+      "Hari ini, aku doakan yang baik-baik buat Nadin Syahruni Fauziah.",
+      "Semoga semua hal yang pernah bikin Nadin jatuh, nantinya bisa jadi alasan buat Nadin jadi lebih kuat. Semoga Nadin selalu dijaga di mana pun berada, bahkan di saat aku nggak bisa ada di samping Nadin.",
+      "",
+      "Semoga ke depannya Nadin selalu dikelilingi orang-orang yang tulus, banyak hal baik, dan tentunya kebahagiaan.",
+      "",
+      "Kalau nanti aku bukan orang yang selalu ada di samping Nadin, setidaknya aku tetap ingin jadi orang yang selalu berharap Nadin baik-baik aja.",
+      "",
+      "Semoga apa pun yang Nadin mau dan cita-citakan bisa tercapai satu per satu. 🤍"
     ],
     page2Lines: [
-      "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Nadin, bagaimanapun caranya yaaa.",
+      "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Nadin, bagaimanapun caranya.",
       "",
-      "Barakallah fi umrik. Terima kasih sudah bertahan sampai sejauh ini ya din. Semoga segala doa dan harapan baik Nadin segera menemukan jalannya.",
+      "Barakallah fi umrik. Terima kasih sudah bertahan sampai sejauh ini. Semoga segala doa dan harapan baik Nadin segera menemukan jalannya.",
       "",
       "- Wish you all the best"
     ],
-    feedbackTitle: "Kamu suka g? 🥺",
+    feedbackTitle: "kamu suka g?",
     feedbackGakBtn: "Gak! 😢",
     feedbackSukaBtn: "Suka!! ❤️",
     thanksText: "Makasih ya din."
@@ -43,7 +46,7 @@ export const defaultBirthdayData = {
     giftCardSubtitle: "Ketuk kado ini untuk membukanya...",
     bouquetImageSrc: "/assets/Isal4.png",
     bouquetTitle: "Buket Bunga Terindah untuk Nadin🌸✨",
-    bouquetText: "Buket bunga mawar merah muda lembut melambangkan keanggunan, kebaikan hatimu yang tulus, serta kasih sayang yang mengelilingimu.\n\nTulip putih melambangkan kemurnian harapan baru dan doa tulus di usiamu yang ke-20 tahun ini. Semoga hari-harimu seindah mekarnya bunga-bunga ini!"
+    bouquetText: "Buket mawar merah muda ini untuk Nadin, melambangkan kelembutan, keanggunan, dan kebaikan hati Nadin yang tulus. Setiap bunganya membawa doa dan harapan baik untuk usia Nadin yang ke-20. Semoga langkah Nadin ke depannya selalu dipenuhi kebahagiaan, cinta, dan hal-hal indah yang Nadin layak dapatkan. 🤍🌷"
   },
   mediaCard: {
     enabled: false,

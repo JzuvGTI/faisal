@@ -19,20 +19,23 @@ export default function PaperLetter({
   const coverDesc = letterData.coverDesc || "Ada sebuah tulisan kecil di selembar kertas ini.\nKetuk tombol di bawah untuk membacanya.";
   const bacaBtnText = letterData.bacaBtnText || "Baca Surat";
   const page1Lines = letterData.page1Lines || [
-    "Hari ini, saya langitkan semua doa terbaik saya untuk Nadin.",
-    "Semoga hal-hal yang membuat Nadin runtuh turut menjadi alasan Nadin untuk tetap tumbuh.",
-    "Semoga dunia senantiasa menjaga Nadin dimanapun Nadin berada.",
-    "Semoga hari-hari Nadin selalu diiringi cinta yang tak pernah ada batasnya.",
-    "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang Nadin inginkan."
+    "Hari ini, aku doakan yang baik-baik buat Nadin Syahruni Fauziah.",
+    "Semoga semua hal yang pernah bikin Nadin jatuh, nantinya bisa jadi alasan buat Nadin jadi lebih kuat. Semoga Nadin selalu dijaga di mana pun berada, bahkan di saat aku nggak bisa ada di samping Nadin.",
+    "",
+    "Semoga ke depannya Nadin selalu dikelilingi orang-orang yang tulus, banyak hal baik, dan tentunya kebahagiaan.",
+    "",
+    "Kalau nanti aku bukan orang yang selalu ada di samping Nadin, setidaknya aku tetap ingin jadi orang yang selalu berharap Nadin baik-baik aja.",
+    "",
+    "Semoga apa pun yang Nadin mau dan cita-citakan bisa tercapai satu per satu. 🤍"
   ];
   const page2Lines = letterData.page2Lines || [
-    "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Nadin, bagaimanapun caranya yaaa.",
+    "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Nadin, bagaimanapun caranya.",
     "",
-    "Barakallah fi umrik. Terima kasih sudah bertahan sampai sejauh ini ya din. Semoga segala doa dan harapan baik Nadin segera menemukan jalannya.",
+    "Barakallah fi umrik. Terima kasih sudah bertahan sampai sejauh ini. Semoga segala doa dan harapan baik Nadin segera menemukan jalannya.",
     "",
     "- Wish you all the best"
   ];
-  const feedbackTitle = letterData.feedbackTitle || "Kamu suka g? 🥺";
+  const feedbackTitle = letterData.feedbackTitle || "kamu suka g?";
   const feedbackGakBtn = letterData.feedbackGakBtn || "Gak! 😢";
   const feedbackSukaBtn = letterData.feedbackSukaBtn || "Suka!! ❤️";
   const thanksText = letterData.thanksText || "Makasih ya din.";
