@@ -15,27 +15,27 @@ export default function PaperLetter({
   const [gakOffset, setGakOffset] = useState({ x: 0, y: 0 });
   const paperRef = useRef(null);
 
-  const coverTitle = letterData.coverTitle || "Untuk Dahayu Zashika Wikrama 🌸";
+  const coverTitle = letterData.coverTitle || "Untuk Nadin Syahruni Fauziah🌸";
   const coverDesc = letterData.coverDesc || "Ada sebuah tulisan kecil di selembar kertas ini.\nKetuk tombol di bawah untuk membacanya.";
   const bacaBtnText = letterData.bacaBtnText || "Baca Surat";
   const page1Lines = letterData.page1Lines || [
-    "Hari ini, saya langitkan semua doa terbaik saya untuk Dahayu.",
-    "Semoga hal-hal yang membuat Dahayu runtuh turut menjadi alasan Dahayu untuk tetap tumbuh.",
-    "Semoga dunia senantiasa menjaga Dahayu dimanapun Dahayu berada.",
-    "Semoga hari-hari Dahayu selalu diiringi cinta yang tak pernah ada batasnya.",
-    "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang Dahayu inginkan."
+    "Hari ini, saya langitkan semua doa terbaik saya untuk Nadin.",
+    "Semoga hal-hal yang membuat Nadin runtuh turut menjadi alasan Nadin untuk tetap tumbuh.",
+    "Semoga dunia senantiasa menjaga Nadin dimanapun Nadin berada.",
+    "Semoga hari-hari Nadin selalu diiringi cinta yang tak pernah ada batasnya.",
+    "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang Nadin inginkan."
   ];
   const page2Lines = letterData.page2Lines || [
-    "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Dahayu bagimanapun caranya.",
+    "Dengan ataupun tanpaku, semoga semesta selalu membahagiakan Nadin, bagaimanapun caranya yaaa.",
     "",
-    "Barakallah fi umrik, terima kasih sudah bertahan sampai sejauh ini.",
+    "Barakallah fi umrik. Terima kasih sudah bertahan sampai sejauh ini ya din. Semoga segala doa dan harapan baik Nadin segera menemukan jalannya.",
     "",
     "- Wish you all the best"
   ];
-  const feedbackTitle = letterData.feedbackTitle || "Kamu suka nggak? 🥺";
+  const feedbackTitle = letterData.feedbackTitle || "Kamu suka g? 🥺";
   const feedbackGakBtn = letterData.feedbackGakBtn || "Gak! 😢";
   const feedbackSukaBtn = letterData.feedbackSukaBtn || "Suka!! ❤️";
-  const thanksText = letterData.thanksText || "Terimakasih.";
+  const thanksText = letterData.thanksText || "Makasih ya din.";
 
   // Typewriter effect logic
   useEffect(() => {

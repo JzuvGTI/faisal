@@ -32,24 +32,24 @@ export const defaultBirthdayData = {
       "",
       "- Wish you all the best"
     ],
-    feedbackTitle: "Kamu suka nggak? 🥺",
+    feedbackTitle: "Kamu suka g? 🥺",
     feedbackGakBtn: "Gak! 😢",
     feedbackSukaBtn: "Suka!! ❤️",
-    thanksText: "Terimakasih."
+    thanksText: "Makasih ya din."
   },
   flowerGift: {
     enabled: true,
     giftCardTitle: "Kado Spesial untuk Nadin",
     giftCardSubtitle: "Ketuk kado ini untuk membukanya...",
-    bouquetImageSrc: "/assets/flower_bouquet.jpg",
+    bouquetImageSrc: "/assets/Isal4.png",
     bouquetTitle: "Buket Bunga Terindah untuk Nadin🌸✨",
     bouquetText: "Buket bunga mawar merah muda lembut melambangkan keanggunan, kebaikan hatimu yang tulus, serta kasih sayang yang mengelilingimu.\n\nTulip putih melambangkan kemurnian harapan baru dan doa tulus di usiamu yang ke-20 tahun ini. Semoga hari-harimu seindah mekarnya bunga-bunga ini!"
   },
   mediaCard: {
-    enabled: false, // Disembunyikan sesuai pengaturan editan Anda
+    enabled: false,
     type: "image",
     src: "/assets/video-kita.mp4",
-    imageSrc: "/assets/R652026121319_raw8.jpeg",
+    imageSrc: "/assets/Isal1.jpg",
     caption: "Momen Spesial Kita Bersama 💕"
   },
   clothesline: {
@@ -59,21 +59,21 @@ export const defaultBirthdayData = {
       {
         id: 1,
         type: "image",
-        src: "/assets/R652026121319_raw8.jpeg",
-        title: "Memories 🌟",
+        src: "/assets/Isal3.jpg",
+        title: "Zaman SMP",
         description: "Setiap kenangan bersamamu adalah berkas cahaya manis yang selalu menghangatkan hari-hari."
       },
       {
         id: 2,
         type: "image",
-        src: "/assets/R652026121319_raw6.jpeg",
-        title: "Keep Shining ✨",
+        src: "/assets/Isal2.jpg",
+        title: "the coffee shop where we first met right at the corner",
         description: "Semoga di usia yang baru ini, binar matamu tetap penuh semangat untuk mengejar segala cita-citamu."
       },
       {
         id: 3,
-        type: "gif",
-        src: "/assets/G652026121318.gif",
+        type: "image",
+        src: "/assets/Isal1.jpg",
         title: "Nadin Day! 💖",
         description: "Hari yang sangat spesial untuk seseorang yang luar biasa manis! Selamat ulang tahun yang ke-20!"
       }

@@ -12,16 +12,30 @@ export default function ClotheslineGallery({
   const enabled = clotheslineData.enabled !== false;
   if (!isTriggered || !enabled) return null;
 
-  const title = clotheslineData.title || 'Jemuran Kenangan Dahayu 🧸🎀';
+  const title = clotheslineData.title || 'Jemuran Kenangan Nadin Syahruni Fauziah🧸🎀';
   const items = Array.isArray(clotheslineData.items) && clotheslineData.items.length > 0 
     ? clotheslineData.items 
     : [
         {
           id: 1,
           type: 'image',
-          src: '/assets/R652026121319_raw8.jpeg',
-          title: 'Memories 🌟',
+          src: '/assets/Isal3.jpg',
+          title: 'Zaman SMP',
           description: 'Setiap kenangan bersamamu adalah berkas cahaya manis yang selalu menghangatkan hari-hari.'
+        },
+        {
+          id: 2,
+          type: 'image',
+          src: '/assets/Isal2.jpg',
+          title: 'the coffee shop where we first met right at the corner',
+          description: 'Semoga di usia yang baru ini, binar matamu tetap penuh semangat untuk mengejar segala cita-citamu.'
+        },
+        {
+          id: 3,
+          type: 'image',
+          src: '/assets/Isal1.jpg',
+          title: 'Nadin Day! 💖',
+          description: 'Hari yang sangat spesial untuk seseorang yang luar biasa manis! Selamat ulang tahun yang ke-20!'
         }
       ];
 
