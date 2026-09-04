@@ -35,7 +35,7 @@ export default function ClotheslineGallery({
           type: 'image',
           src: '/assets/Isal3.jpg',
           title: 'Nadin Day! 💖',
-          description: 'Kenangan sekolah bersamamu akan selalu jadi bagian manis yang sulit dilupakan.'
+          description: 'Selalu bahagia ya hari ini dan esok'
         }
       ];
 
