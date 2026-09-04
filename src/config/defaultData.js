@@ -64,21 +64,21 @@ export const defaultBirthdayData = {
         type: "image",
         src: "/assets/Isal1.jpg",
         title: "Zaman SMP",
-        description: "Setiap kenangan bersamamu adalah berkas cahaya manis yang selalu menghangatkan hari-hari."
+        description: "Inimah jaman aku masih spam pppppp di Whatsapp."
       },
       {
         id: 2,
         type: "image",
         src: "/assets/Isal2.jpg",
         title: "the coffee shop where we first met right at the corner",
-        description: "Semoga di usia yang baru ini, binar matamu tetap penuh semangat untuk mengejar segala cita-citamu."
+        description: "Ini di cassa terrace abis pulang kerja."
       },
       {
         id: 3,
         type: "image",
         src: "/assets/Isal3.jpg",
         title: "Nadin Day! 💖",
-        description: "Hari yang sangat spesial untuk seseorang yang luar biasa manis! Selamat ulang tahun yang ke-20!"
+        description: "Kenangan sekolah bersamamu akan selalu jadi bagian manis yang sulit dilupakan."
       }
     ]
   },
